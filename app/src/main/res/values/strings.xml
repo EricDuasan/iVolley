@@ -1,3 +1,6 @@
 <resources>
     <string name="app_name">iVolley</string>
+    <string name="slogan">Spike into the Volleyball lifestyle</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

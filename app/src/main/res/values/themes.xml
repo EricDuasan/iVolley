@@ -1,8 +1,9 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
-    <style name="Base.Theme.IVolley" parent="Theme.Material3.DayNight.NoActionBar">
+    <style name="Base.Theme.IVolley" parent="Theme.MaterialComponents.DayNight">
         <!-- Customize your light theme here. -->
-        <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+        <item name="colorPrimary">@color/primary</item>
+        <item name="colorSecondary">@color/secundary</item>
     </style>
 
     <style name="Theme.IVolley" parent="Base.Theme.IVolley" />
