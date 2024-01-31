@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "696050570926",
+    "project_id": "final-pmdm",
+    "storage_bucket": "final-pmdm.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:696050570926:android:0bc59415c2815c72957f3f",
+        "android_client_info": {
+          "package_name": "es.ericd.ivolley"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDFoVOneoXa1jkA3wCPaDGJ3u3mDVPfF0c"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
