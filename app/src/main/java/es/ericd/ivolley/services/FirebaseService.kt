@@ -23,6 +23,17 @@ class FirebaseService {
 
         fun getCurrentUser() : FirebaseUser? = auth.currentUser
 
+        suspend fun registerUser(email: String, password: String): FirebaseUser? {
+            val authResult = auth.createUserWithEmailAndPassword(email, password).await()
+
+            return authResult.user
+
+        }
+
+        fun resetPassword(email: String) {
+            auth.sendPasswordResetEmail(email)
+        }
+
     }
 
 }
