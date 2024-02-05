@@ -1,0 +1,12 @@
+<resources>
+    <!-- Reply Preference -->
+    <string-array name="chat_colors">
+        <item>Red</item>
+        <item>Blue</item>
+    </string-array>
+
+    <string-array name="reply_values">
+        <item>#f00</item>
+        <item>#00F</item>
+    </string-array>
+</resources>

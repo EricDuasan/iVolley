@@ -1,0 +1,36 @@
+<PreferenceScreen xmlns:app="http://schemas.android.com/apk/res-auto" xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <PreferenceCategory app:title="Chat">
+
+        <EditTextPreference
+            app:key="username"
+            app:title="Chat username"
+            app:useSimpleSummaryProvider="true" />
+
+        <ListPreference
+            app:defaultValue="reply"
+            app:entries="@array/chat_colors"
+            app:entryValues="@array/reply_values"
+            app:key="reply"
+            app:title="Chat username color"
+            app:useSimpleSummaryProvider="true" />
+
+    </PreferenceCategory>
+
+    <PreferenceCategory app:title="Cache">
+
+        <SwitchPreferenceCompat
+            app:key="cache"
+            app:title="Enable cache?" />
+
+    </PreferenceCategory>
+
+    <PreferenceCategory app:title="General">
+
+        <SwitchPreferenceCompat
+            app:key="vibrate"
+            app:title="Enable vibrate?" />
+
+    </PreferenceCategory>
+
+</PreferenceScreen>
