@@ -11,16 +11,5 @@ class SettingsActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_settings)
 
-
-    }
-
-    fun setDefaultUsernameOnPreferences() {
-        val prefs = getSharedPreferences(Constants.preferences, Context.MODE_PRIVATE)
-
-        val username = prefs.getString("username", null)
-
-        if (username == null || username.equals("")) {
-            // TODO: SET DEFAULT FIREBASE USERNAME
-        }
     }
 }

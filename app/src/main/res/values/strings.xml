@@ -17,4 +17,13 @@
     <string name="attachment_summary_on">Automatically download attachments for incoming emails
     </string>
     <string name="attachment_summary_off">Only download attachments when manually requested</string>
+    <string name="lorem_ipsum">
+         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam blandit quam eget imperdiet volutpat. Proin pulvinar lobortis nibh, eget ultrices velit molestie a. Aenean placerat tristique consequat. Cras sit amet sollicitudin dui. Etiam blandit ipsum et elementum blandit. Aenean eu interdum nisl, commodo tristique arcu. Morbi et massa fringilla, auctor sem gravida, vestibulum nisl. Praesent lacinia et arcu ac tempus.
+
+Fusce pharetra odio condimentum diam ornare, in vestibulum tortor ultrices. Vivamus rhoncus leo est, in aliquet nulla aliquam in. Suspendisse diam enim, rutrum eu eros at, imperdiet pretium neque. Ut ornare eros non justo ullamcorper, et luctus lacus interdum. Duis malesuada mauris felis, vel tempus nisi dignissim eget. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Etiam suscipit erat ut aliquam scelerisque. Aliquam turpis tortor, egestas sed interdum at, pellentesque tristique turpis. Sed purus neque, congue fermentum pharetra vel, dictum ut ligula. Ut ac porta justo, a vulputate odio.
+
+Vivamus faucibus tortor erat, rhoncus elementum dui porta non. Phasellus elementum aliquam risus. Sed quis est eu dolor dignissim hendrerit. Vivamus nec nunc condimentum, ultricies nibh sed, cursus diam. Aliquam vehicula nisi elit, finibus condimentum ipsum finibus ac. Maecenas porta magna nec tempor placerat. Duis finibus lacus velit. Ut sodales ligula nec urna commodo, ac viverra nisi porttitor. Etiam consectetur massa id ipsum lobortis cursus. Nullam consectetur consequat blandit. Etiam volutpat varius mauris, ac pellentesque sem ullamcorper id. Vivamus at massa orci. Praesent porta nibh sed tortor tincidunt, id interdum augue malesuada.
+
+Sed quis tristique tellus. Nullam faucibus fermentum lacus, id tempor magna gravida sit amet. Praesent dapibus leo sed elit convallis auctor. In ac pretium eros. Praesent luctus nisi eget vehicula bibendum. Cras et ligula ut massa sagittis porta quis ut mi. Maecenas tempus dolor sed gravida pharetra. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean vitae pretium augue. Quisque sapien elit, convallis eu efficitur sed, egestas non odio. Vestibulum ac dolor euismod, tempus ante sed, vestibulum leo.
+    </string>
 </resources>

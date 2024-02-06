@@ -11,7 +11,7 @@
             app:defaultValue="reply"
             app:entries="@array/chat_colors"
             app:entryValues="@array/reply_values"
-            app:key="reply"
+            app:key="chatUsernameColor"
             app:title="Chat username color"
             app:useSimpleSummaryProvider="true" />
 
