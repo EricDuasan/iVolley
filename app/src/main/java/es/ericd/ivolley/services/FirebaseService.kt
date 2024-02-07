@@ -2,6 +2,7 @@ package es.ericd.ivolley.services
 
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
+import com.google.firebase.auth.UserProfileChangeRequest
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 import kotlinx.coroutines.tasks.await
@@ -23,8 +24,12 @@ class FirebaseService {
 
         fun getCurrentUser() : FirebaseUser? = auth.currentUser
 
-        suspend fun registerUser(email: String, password: String): FirebaseUser? {
+        suspend fun registerUser(email: String, displayName: String, password: String): FirebaseUser? {
             val authResult = auth.createUserWithEmailAndPassword(email, password).await()
+
+            val updateProfileBuilder = UserProfileChangeRequest.Builder().setDisplayName(displayName).build()
+
+            authResult.user!!.updateProfile(updateProfileBuilder).await()
 
             return authResult.user
 

@@ -13,6 +13,7 @@ import androidx.fragment.app.replace
 import com.google.android.material.navigation.NavigationBarView
 import com.google.android.material.snackbar.Snackbar
 import es.ericd.ivolley.databinding.ActivityMainBinding
+import es.ericd.ivolley.fragments.ChatFragment
 import es.ericd.ivolley.fragments.InformationFragment
 import es.ericd.ivolley.services.FirebaseService
 import es.ericd.ivolley.utils.Constants
@@ -38,7 +39,9 @@ class MainActivity : AppCompatActivity(), NavigationBarView.OnItemSelectedListen
             Snackbar.make(binding.root, extras.getString("msg").toString(), Snackbar.LENGTH_LONG).show()
         }
 
-        setDefaultUsernameOnPreferences()
+        binding.bottomNavView.setOnItemSelectedListener(this)
+
+        setUsernameOnPreferences()
 
     }
 
@@ -53,14 +56,15 @@ class MainActivity : AppCompatActivity(), NavigationBarView.OnItemSelectedListen
         }
     }
 
-    fun setDefaultUsernameOnPreferences() {
+    fun setUsernameOnPreferences() {
         val prefs = getSharedPreferences(Constants.preferences, Context.MODE_PRIVATE)
 
         val username = prefs.getString("username", null)
 
         if (username == null || username == "") {
             with(prefs.edit()) {
-                putString("username", FirebaseService.getCurrentUser()!!.email)
+                putString("username", FirebaseService.getCurrentUser()!!.displayName)
+                putString("userUID", FirebaseService.getCurrentUser()!!.uid)
                 commit()
             }
         }
@@ -94,7 +98,14 @@ class MainActivity : AppCompatActivity(), NavigationBarView.OnItemSelectedListen
                 true
             }
             R.id.navbottom_btn_ranking -> true
-            R.id.navbottom_btn_chat -> true
+            R.id.navbottom_btn_chat -> {
+                Log.d("test","entra btn_chat")
+                supportFragmentManager.commit {
+                    setReorderingAllowed(true)
+                    replace<ChatFragment>(binding.fragmentContainerView.id)
+                }
+                true
+            }
             R.id.navbottom_btn_media -> true
             else -> false
         }

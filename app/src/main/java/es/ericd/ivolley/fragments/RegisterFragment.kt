@@ -13,6 +13,7 @@ import com.google.firebase.auth.FirebaseAuth
 import es.ericd.ivolley.R
 import es.ericd.ivolley.databinding.FragmentRegisterBinding
 import es.ericd.ivolley.services.FirebaseService
+import es.ericd.ivolley.services.FirestoreService
 import es.ericd.ivolley.utils.Constants
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -43,17 +44,18 @@ class RegisterFragment : Fragment() {
 
         binding.btnLogin.setOnClickListener {
             val user = binding.etUsername.text.toString()
+            val displayName = binding.etDisplayName.text.toString()
             val password = binding.etPassword.text.toString()
             val passwordRepeat = binding.etPasswordRepeat.text.toString()
 
-            register(user, password, passwordRepeat)
+            register(user, displayName, password, passwordRepeat)
 
         }
 
         return binding.root
     }
 
-    fun register(user: String, password: String, passwordRepeat: String) {
+    fun register(user: String, displayName: String, password: String, passwordRepeat: String) {
         if (!password.equals(passwordRepeat)) {
             Snackbar.make(binding.root, "Passwords don't match", Snackbar.LENGTH_LONG).show()
             return
@@ -64,10 +66,16 @@ class RegisterFragment : Fragment() {
             return
         }
 
+        if (displayName == "") {
+            Snackbar.make(binding.root, "You must set a name", Snackbar.LENGTH_LONG).show()
+            return
+        }
+
         lifecycleScope.launch(Dispatchers.IO) {
 
             try {
-                FirebaseService.registerUser(user, password)
+                val firebaseUser = FirebaseService.registerUser(user, displayName, password)
+                FirestoreService.saveUserPreferences(firebaseUser!!)
 
                 withContext(Dispatchers.Main) {
 
