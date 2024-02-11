@@ -7,18 +7,21 @@ import android.os.Bundle
 import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
-import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.core.os.bundleOf
 import androidx.fragment.app.commit
 import androidx.fragment.app.replace
 import com.google.android.material.navigation.NavigationBarView
 import com.google.android.material.snackbar.Snackbar
 import es.ericd.ivolley.databinding.ActivityMainBinding
+import es.ericd.ivolley.dataclases.VolleyItem
 import es.ericd.ivolley.fragments.ChatFragment
 import es.ericd.ivolley.fragments.InformationFragment
+import es.ericd.ivolley.fragments.VolleyRankingFragment
+import es.ericd.ivolley.fragments.VolleyballMatchesFragment
 import es.ericd.ivolley.services.FirebaseService
 import es.ericd.ivolley.utils.Constants
 
-class MainActivity : AppCompatActivity(), NavigationBarView.OnItemSelectedListener {
+class MainActivity : AppCompatActivity(), NavigationBarView.OnItemSelectedListener, VolleyRankingFragment.VolleyballRankingInterface {
 
     lateinit var binding: ActivityMainBinding
 
@@ -97,7 +100,13 @@ class MainActivity : AppCompatActivity(), NavigationBarView.OnItemSelectedListen
                 }
                 true
             }
-            R.id.navbottom_btn_ranking -> true
+            R.id.navbottom_btn_ranking -> {
+                supportFragmentManager.commit {
+                    setReorderingAllowed(true)
+                    replace<VolleyRankingFragment>(binding.fragmentContainerView.id)
+                }
+                true
+            }
             R.id.navbottom_btn_chat -> {
                 Log.d("test","entra btn_chat")
                 supportFragmentManager.commit {
@@ -110,6 +119,21 @@ class MainActivity : AppCompatActivity(), NavigationBarView.OnItemSelectedListen
             else -> false
         }
 
+    }
+
+    override fun showCountryMatches(volleyItem: VolleyItem) {
+
+        val infoBundle = bundleOf(
+            VolleyballMatchesFragment.COUNTRY to volleyItem.country,
+            VolleyballMatchesFragment.FLAG to volleyItem.flag,
+            VolleyballMatchesFragment.SCORE to volleyItem.score
+        )
+
+        supportFragmentManager.commit {
+            setReorderingAllowed(true)
+            replace<VolleyballMatchesFragment>(binding.fragmentContainerView.id, args = infoBundle )
+            addToBackStack(null)
+        }
     }
 
 
