@@ -12,9 +12,12 @@ import com.google.android.material.snackbar.Snackbar
 import com.squareup.picasso.Picasso
 import es.ericd.ivolley.R
 import es.ericd.ivolley.adapters.VolleyballMatchAdapter
+import es.ericd.ivolley.databases.Matches
+import es.ericd.ivolley.databases.RankingDatabase
 import es.ericd.ivolley.databinding.FragmentVolleyballMatchesBinding
 import es.ericd.ivolley.dataclases.VolleyballMatchItem
 import es.ericd.ivolley.services.ApiService
+import es.ericd.ivolley.utils.PreferencesUtil
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
@@ -63,17 +66,55 @@ class VolleyballMatchesFragment : Fragment() {
             try {
                 val matches = ApiService.getMatches(countryTeam)
 
+                val prefs = PreferencesUtil.getPreferences(requireContext())
+
+                if (prefs.getBoolean(PreferencesUtil.CACHE, false)) {
+                    RankingDatabase.getInstance(requireContext()).matchesDao().deleteCar(countryTeam)
+                    saveData(matches)
+                }
+
                 withContext(Dispatchers.Main) {
                     matchesList.addAll(matches)
                     binding.recView.adapter?.notifyDataSetChanged()
                 }
 
             } catch (e: Exception) {
+
+                val dataFromCache = RankingDatabase.getInstance(requireContext()).matchesDao().getMatchesByCountry(countryTeam)
+
                 withContext(Dispatchers.Main) {
-                    Snackbar.make(binding.root, e.message.toString(), Snackbar.LENGTH_LONG).show()
+
+                    dataFromCache.forEach {
+                        matchesList.add(
+                            VolleyballMatchItem(
+                                opponent = it.opponent,
+                                result = it.result,
+                                countryFlag = it.opponentFlag
+                            )
+                        )
+                    }
+
+                    binding.recView.adapter?.notifyDataSetChanged()
+
+                    // Snackbar.make(binding.root, "Something went wrong", Snackbar.LENGTH_LONG).show()
                 }
             }
 
+        }
+    }
+
+    suspend fun saveData(matches: List<VolleyballMatchItem>) {
+        matches.forEach {
+            RankingDatabase.getInstance(requireContext())
+                .matchesDao()
+                .insertMatch(
+                    Matches(
+                        team = countryTeam,
+                        opponent = it.opponent,
+                        opponentFlag = it.countryFlag,
+                        result = it.result
+                    )
+                )
         }
     }
 
