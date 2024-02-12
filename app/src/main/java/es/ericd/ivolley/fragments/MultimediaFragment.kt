@@ -60,12 +60,20 @@ class MultimediaFragment : Fragment() {
         // val uri = Uri.parse(video)
 
         lifecycleScope.launch(Dispatchers.IO) {
-            val video = ApiService.getVideo(team, team2)
+            try {
+                val video = ApiService.getVideo(team, team2)
 
-            withContext(Dispatchers.Main) {
-                binding.videoView.setVideoURI( Uri.parse(video.matchUrl) )
-                binding.videoView.start()
+                withContext(Dispatchers.Main) {
+                    binding.videoView.setVideoURI( Uri.parse(video.matchUrl) )
+                    binding.videoView.start()
 
+                }
+
+            } catch (e: Exception) {
+                withContext(Dispatchers.Main) {
+                    Snackbar.make(binding.root, e.message.toString(), Snackbar.LENGTH_LONG).show()
+
+                }
             }
 
         }
