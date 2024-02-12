@@ -10,6 +10,7 @@ import kotlinx.coroutines.tasks.await
 import java.util.Calendar
 import java.util.GregorianCalendar
 import java.util.TimeZone
+import com.google.firebase.Timestamp
 
 class FirestoreService {
     companion object {
@@ -28,97 +29,48 @@ class FirestoreService {
 
         }
 
-        suspend fun  getUsersIDs(): MutableList<ChatUIDItem> {
-            val firebaseDB = getInstance()
-
-            val chatsFromDB = firebaseDB.collection(CHATS_PREFS).get().await()
-
-            val UIDs = mutableListOf<ChatUIDItem>()
-
-            chatsFromDB.forEach {
-                UIDs.add(
-                    ChatUIDItem(
-                        it.reference.id,
-                        it.get("displayUsername").toString()
-                    )
-                )
-            }
-
-            return UIDs
-
-        }
-
         suspend fun getChats(): MutableList<Chatitem> {
             val firebaseDB = getInstance()
 
-            // val chatsFromDB = firebaseDB.collection("chats").get().await()
+            val chatsFromDB = firebaseDB.collection(CHATS).orderBy("timestamp").get().await()
 
-            val start = GregorianCalendar(TimeZone.getDefault())
-            start.add(Calendar.DAY_OF_MONTH, -2)
-
-            val end = GregorianCalendar(TimeZone.getDefault())
-            end.add(Calendar.DAY_OF_MONTH, 1)
-
-            // val timestamp = FieldValue.serverTimestamp()
-
-            // Get chats between a timestamp
-            val chatsFromDB = firebaseDB.collection("chats")
-                .whereGreaterThan("timestamp", start.time)
-                .whereLessThan("timestamp", end.time)
-                .get().await()
-
-            val ids = getUsersIDs()
-
-            val chats = mutableListOf<Chatitem>()
+            val data = mutableListOf<Chatitem>()
 
             chatsFromDB.forEach {
-
-                Log.d("data", it.toString())
-
-                val userId = it.get("userUID")
-                val displayName = ids.find { it.uid.equals(userId) }?.displayName
-
-                chats.add(
+                data.add(
                     Chatitem(
-                        displayName ?: "",
-                        it.get("message").toString()
+                        username = it.get("username").toString(),
+                        message = it.get("message").toString()
                     )
                 )
             }
 
-            Log.d("data","UIDS")
 
-            ids.forEach {
-                Log.d("data", it.toString())
-            }
-
-            return chats
+            return data
 
         }
 
-        suspend fun addChat(userUID: String, message: String) {
+        suspend fun addChat(message: String) {
             val firebaseDB = getInstance()
 
             // Get UTC timestamp from firebase
-            val timestamp = FieldValue.serverTimestamp()
+            val firebaseUser = FirebaseService.getCurrentUser()?.displayName ?: FirebaseService.getCurrentUser().toString()
 
-            firebaseDB.collection("chats").add(mapOf(
-                    "userUID" to userUID,
+            firebaseDB.collection(CHATS).add(mapOf(
+                    "username" to firebaseUser,
                     "message" to message,
-                    "timestamp" to timestamp
+                    "timestamp" to Timestamp.now()
                 )
             ).await()
 
         }
 
-        suspend fun saveUserPreferences(user: FirebaseUser) {
-            val firebaseDB = getInstance()
+        suspend fun updateUser(prevUsername: String, newUser: String) {
+            val data = getInstance().collection(CHATS).whereEqualTo("username", prevUsername).get().await()
 
-            firebaseDB.collection(CHATS_PREFS).document(user.uid).set(
-                mapOf(
-                    "displayUsername" to user.displayName
-                )
-            ).await()
+            data.forEach {
+                it.reference.update("username", newUser).await()
+            }
         }
 
     }

@@ -35,6 +35,14 @@ class FirebaseService {
 
         }
 
+        suspend fun changeDisplayName(newDisplayName: String) {
+            val user = getCurrentUser() ?: throw Exception("User is null")
+
+            val updateProfileBuilder = UserProfileChangeRequest.Builder().setDisplayName(newDisplayName).build()
+
+            user.updateProfile(updateProfileBuilder).await()
+        }
+
         fun resetPassword(email: String) {
             auth.sendPasswordResetEmail(email)
         }

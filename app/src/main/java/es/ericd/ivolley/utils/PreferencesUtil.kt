@@ -7,6 +7,7 @@ class PreferencesUtil {
     companion object {
 
         val USERNAME = "username"
+        val PREV_USERNAME = "prevUsername"
         val USERUID = "userUID"
         val CACHE = "cache"
 

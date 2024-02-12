@@ -49,6 +49,25 @@ class ChatFragment : Fragment() {
         binding.recView.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
 
         lifecycleScope.launch(Dispatchers.IO) {
+
+            val prefs = PreferencesUtil.getPreferences(requireContext())
+
+            val username = prefs.getString(PreferencesUtil.USERNAME, "")
+
+            val prevUsername = prefs.getString(PreferencesUtil.PREV_USERNAME, "")
+
+            if (username != prevUsername) {
+                // El usuari ha canviat el nom en les preferències.
+
+                lifecycleScope.launch(Dispatchers.IO) {
+                    FirestoreService.updateUser(prevUsername ?: "", username ?: "")
+                }
+                with(prefs.edit()) {
+                    putString(PreferencesUtil.PREV_USERNAME, username)
+
+                }
+            }
+
             val chats = FirestoreService.getChats()
 
             withContext(Dispatchers.Main) {
@@ -68,7 +87,7 @@ class ChatFragment : Fragment() {
         if (userUID != null) {
 
             lifecycleScope.launch(Dispatchers.IO) {
-                FirestoreService.addChat(userUID, message)
+                FirestoreService.addChat(message)
 
             }
 

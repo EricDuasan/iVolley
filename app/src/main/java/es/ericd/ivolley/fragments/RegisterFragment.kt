@@ -74,8 +74,8 @@ class RegisterFragment : Fragment() {
         lifecycleScope.launch(Dispatchers.IO) {
 
             try {
-                val firebaseUser = FirebaseService.registerUser(user, displayName, password)
-                FirestoreService.saveUserPreferences(firebaseUser!!)
+
+                FirebaseService.registerUser(user, displayName, password)
 
                 withContext(Dispatchers.Main) {
 
