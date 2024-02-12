@@ -16,6 +16,7 @@ import es.ericd.ivolley.databinding.ActivityMainBinding
 import es.ericd.ivolley.dataclases.VolleyItem
 import es.ericd.ivolley.fragments.ChatFragment
 import es.ericd.ivolley.fragments.InformationFragment
+import es.ericd.ivolley.fragments.MultimediaFragment
 import es.ericd.ivolley.fragments.VolleyRankingFragment
 import es.ericd.ivolley.fragments.VolleyballMatchesFragment
 import es.ericd.ivolley.services.FirebaseService
@@ -108,14 +109,19 @@ class MainActivity : AppCompatActivity(), NavigationBarView.OnItemSelectedListen
                 true
             }
             R.id.navbottom_btn_chat -> {
-                Log.d("test","entra btn_chat")
                 supportFragmentManager.commit {
                     setReorderingAllowed(true)
                     replace<ChatFragment>(binding.fragmentContainerView.id)
                 }
                 true
             }
-            R.id.navbottom_btn_media -> true
+            R.id.navbottom_btn_media -> {
+                supportFragmentManager.commit {
+                    setReorderingAllowed(true)
+                    replace<MultimediaFragment>(binding.fragmentContainerView.id)
+                }
+                true
+            }
             else -> false
         }
 

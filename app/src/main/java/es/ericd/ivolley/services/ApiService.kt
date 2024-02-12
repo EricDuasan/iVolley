@@ -1,5 +1,6 @@
 package es.ericd.ivolley.services
 
+import es.ericd.ivolley.adapters.VolleyballVideo
 import es.ericd.ivolley.dataclases.VolleyItem
 import es.ericd.ivolley.dataclases.VolleyballMatchItem
 import es.ericd.ivolley.interfaces.ApiInterface
@@ -44,6 +45,17 @@ class ApiService {
             if (!call.isSuccessful) throw Exception("Something went wrong")
 
             return call.body()!!
+        }
+
+        suspend fun getVideo(team1: String, team2: String): VolleyballVideo {
+            val retrofit = getRetrofit()
+
+            val call: Response<VolleyballVideo> = retrofit.create(ApiInterface::class.java).getVideo(team1, team2)
+
+            if (!call.isSuccessful) throw Exception("Something went wrong")
+
+            return call.body()!!
+
         }
 
     }
