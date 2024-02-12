@@ -2,6 +2,7 @@ package es.ericd.ivolley.fragments
 
 import android.net.Uri
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -29,57 +30,25 @@ class MultimediaFragment : Fragment() {
     ): View? {
         binding = FragmentMultimediaBinding.inflate(inflater)
 
-        val myAdapter = ArrayAdapter.createFromResource(requireContext(), R.array.countries, android.R.layout.simple_spinner_item)
-        myAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-
-        binding.team1.adapter = myAdapter
-        binding.team2.adapter = myAdapter
 
         val mediaController = MediaController(requireContext())
         mediaController.setAnchorView(binding.videoView)
         mediaController.setAnchorView(binding.videoView)
         binding.videoView.setMediaController(mediaController)
 
-        binding.btnSearch.setOnClickListener {
-            val team1 = binding.team1.selectedItem.toString()
-            val team2 = binding.team2.selectedItem.toString()
+        val packageName = "es.ericd.ivolley"
 
-            if (binding.team1.selectedItem.toString().equals(binding.team2.selectedItem.toString())) {
-                Snackbar.make(binding.root, "You must select two different countries", Snackbar.LENGTH_LONG).show()
-            } else {
-                playVideo(team1, team2)
-            }
+        val uri = Uri.parse("android.resource://$packageName/" + R.raw.volleyball_rules)
+
+        binding.videoView.setVideoURI( uri )
+
+        binding.btnPlay.setOnClickListener {
+            binding.videoView.start()
+
         }
-
 
         return binding.root
     }
 
-    fun playVideo(team: String, team2: String) {
-
-        // val uri = Uri.parse(video)
-
-        lifecycleScope.launch(Dispatchers.IO) {
-            try {
-                val video = ApiService.getVideo(team, team2)
-
-                withContext(Dispatchers.Main) {
-                    binding.videoView.setVideoURI( Uri.parse(video.matchUrl) )
-                    binding.videoView.start()
-
-                }
-
-            } catch (e: Exception) {
-                withContext(Dispatchers.Main) {
-                    Snackbar.make(binding.root, e.message.toString(), Snackbar.LENGTH_LONG).show()
-
-                }
-            }
-
-        }
-
-
-
-    }
 
 }
