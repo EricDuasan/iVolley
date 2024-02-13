@@ -7,8 +7,7 @@ class PreferencesUtil {
     companion object {
 
         val USERNAME = "username"
-        val PREV_USERNAME = "prevUsername"
-        val USERUID = "userUID"
+        val COLOR = "chatUsernameColor"
         val CACHE = "cache"
 
         fun getPreferences(context: Context): SharedPreferences {

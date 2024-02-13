@@ -6,4 +6,5 @@
     <color name="secundary">#EDA20C</color>
     <color name="green">#0B9E0B</color>
     <color name="red">#F00</color>
+    <color name="chat_background">#F0F0F0</color>
 </resources>

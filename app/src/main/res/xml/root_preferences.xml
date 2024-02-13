@@ -8,7 +8,7 @@
             app:useSimpleSummaryProvider="true" />
 
         <ListPreference
-            app:defaultValue="reply"
+            app:defaultValue="#000"
             app:entries="@array/chat_colors"
             app:entryValues="@array/reply_values"
             app:key="chatUsernameColor"
@@ -20,6 +20,7 @@
     <PreferenceCategory app:title="Cache">
 
         <SwitchPreferenceCompat
+            android:defaultValue="false"
             app:key="cache"
             app:title="Enable cache?" />
 
@@ -28,6 +29,7 @@
     <PreferenceCategory app:title="General">
 
         <SwitchPreferenceCompat
+            android:defaultValue="false"
             app:key="vibrate"
             app:title="Enable vibrate?" />
 

@@ -1,6 +1,7 @@
 package es.ericd.ivolley.adapters
 
 import android.content.Context
+import android.graphics.Color
 import android.graphics.Paint.Align
 import android.opengl.Visibility
 import android.text.Layout.Alignment
@@ -13,6 +14,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import es.ericd.ivolley.R
 import es.ericd.ivolley.dataclases.Chatitem
+import es.ericd.ivolley.utils.PreferencesUtil
 
 class ChatAdapter(val context: Context, val chatList: MutableList<Chatitem>, val currentUser: String): RecyclerView.Adapter<ChatAdapter.ChatViewHolder>(){
 
@@ -20,15 +22,21 @@ class ChatAdapter(val context: Context, val chatList: MutableList<Chatitem>, val
         private val tvUsername: TextView = view.findViewById(R.id.tv_chat_user)
         private val tvMessage: TextView = view.findViewById(R.id.tv_chat_message)
 
-        fun bindItem(chatitem: Chatitem, currentUser: String) {
+        fun bindItem(context: Context, chatitem: Chatitem, currentUser: String) {
 
-            /*if (chatitem.username == currentUser) {
+            if (chatitem.username == currentUser) {
                 tvUsername.visibility = View.GONE
-                tvMessage.text = chatitem.message
                 tvMessage.gravity = Gravity.RIGHT
-            }*/
+            }
+
             tvUsername.text = chatitem.username
             tvMessage.text = chatitem.message
+
+            val prefs = PreferencesUtil.getPreferences(context)
+
+            val color = prefs.getString(PreferencesUtil.COLOR, "#000000")
+
+            tvMessage.setTextColor(Color.parseColor(color))
 
         }
     }
@@ -43,7 +51,7 @@ class ChatAdapter(val context: Context, val chatList: MutableList<Chatitem>, val
     override fun getItemCount(): Int = chatList.size
 
     override fun onBindViewHolder(holder: ChatViewHolder, position: Int) {
-        holder.bindItem(chatList[position], currentUser)
+        holder.bindItem(context, chatList[position], currentUser)
     }
 
 }

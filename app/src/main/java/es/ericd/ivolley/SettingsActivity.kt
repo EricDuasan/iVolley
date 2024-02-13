@@ -26,6 +26,7 @@ class SettingsActivity : AppCompatActivity() {
             if (newUser != currentUsername) {
                 lifecycleScope.launch(Dispatchers.IO) {
                     FirestoreService.updateUser(currentUsername, newUser ?: FirebaseService.getCurrentUser()?.email.toString())
+                    FirebaseService.changeDisplayName(newUser ?: FirebaseService.getCurrentUser()?.email.toString())
                 }
             }
         }

@@ -4,13 +4,17 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:padding="15dp">
+    android:paddingTop="10dp"
+    >
 
     <TextView
         android:id="@+id/tv_chat_user"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="TextView"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
+        android:background="@color/chat_background"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -20,6 +24,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="TextView"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
+        android:background="@color/chat_background"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_chat_user" />
 </androidx.constraintlayout.widget.ConstraintLayout>

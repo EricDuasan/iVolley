@@ -21,6 +21,7 @@ import es.ericd.ivolley.fragments.VolleyRankingFragment
 import es.ericd.ivolley.fragments.VolleyballMatchesFragment
 import es.ericd.ivolley.services.FirebaseService
 import es.ericd.ivolley.utils.Constants
+import es.ericd.ivolley.utils.PreferencesUtil
 
 class MainActivity : AppCompatActivity(), NavigationBarView.OnItemSelectedListener, VolleyRankingFragment.VolleyballRankingInterface {
 
@@ -63,14 +64,9 @@ class MainActivity : AppCompatActivity(), NavigationBarView.OnItemSelectedListen
     fun setUsernameOnPreferences() {
         val prefs = getSharedPreferences(Constants.preferences, Context.MODE_PRIVATE)
 
-        val username = prefs.getString("username", null)
-
-        if (username == null || username == "") {
-            with(prefs.edit()) {
-                putString("username", FirebaseService.getCurrentUser()!!.displayName)
-                putString("userUID", FirebaseService.getCurrentUser()!!.uid)
-                commit()
-            }
+        with(prefs.edit()) {
+            putString(PreferencesUtil.USERNAME, FirebaseService.getCurrentUser()!!.displayName)
+            commit()
         }
     }
 

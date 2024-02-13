@@ -54,7 +54,7 @@ class FirestoreService {
             val firebaseDB = getInstance()
 
             // Get UTC timestamp from firebase
-            val firebaseUser = FirebaseService.getCurrentUser()?.displayName ?: FirebaseService.getCurrentUser().toString()
+            val firebaseUser = FirebaseService.getCurrentUser()?.displayName ?: FirebaseService.getCurrentUser()?.email.toString()
 
             firebaseDB.collection(CHATS).add(mapOf(
                     "username" to firebaseUser,
