@@ -16,4 +16,8 @@ interface ApiInterface {
 
     @GET("video")
     suspend fun getVideo(@Query("team1") team1: String, @Query("team2") team2: String): Response<VolleyballVideo>
+
+    @GET("notis")
+    suspend fun sendNotifications(): Response<VolleyballVideo>
+
 }

@@ -11,7 +11,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 class ApiService {
 
     companion object {
-        private const val BASE_URL = "https://8b1f-45-133-138-16.ngrok-free.app/"
+        private const val BASE_URL = "https://68b4-45-133-138-16.ngrok-free.app/"
 
         private var retrofit: Retrofit? = null
 
@@ -55,6 +55,14 @@ class ApiService {
             if (!call.isSuccessful) throw Exception("Something went wrong")
 
             return call.body()!!
+
+        }
+
+        suspend fun sendNotificationToAllDevices() {
+            val retrofit = getRetrofit()
+
+            val call: Response<VolleyballVideo> = retrofit.create(ApiInterface::class.java).sendNotifications()
+
 
         }
 

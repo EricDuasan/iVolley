@@ -71,7 +71,7 @@ class VolleyRankingFragment : Fragment() {
                 withContext(Dispatchers.Main) {
                     if (prefs.getBoolean(PreferencesUtil.CACHE, false)) {
 
-                        RankingDatabase.getInstance(requireContext()).rankingDao().deleteCar()
+                        RankingDatabase.getInstance(requireContext()).rankingDao().deleteAll()
                         saveData(ranking)
                     }
                     volleyRankingList.addAll(ranking)
@@ -86,8 +86,6 @@ class VolleyRankingFragment : Fragment() {
                 val data = RankingDatabase.getInstance(requireContext()).rankingDao().getRanking()
 
                 withContext(Dispatchers.Main) {
-                    Snackbar.make(binding.root, e.message.toString(), Snackbar.LENGTH_LONG).show()
-
                     data.forEach {
                         volleyRankingList.add(
                             VolleyItem(

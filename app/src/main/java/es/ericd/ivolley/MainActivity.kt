@@ -12,6 +12,7 @@ import androidx.fragment.app.commit
 import androidx.fragment.app.replace
 import com.google.android.material.navigation.NavigationBarView
 import com.google.android.material.snackbar.Snackbar
+import com.google.firebase.messaging.FirebaseMessaging
 import es.ericd.ivolley.databinding.ActivityMainBinding
 import es.ericd.ivolley.dataclases.VolleyItem
 import es.ericd.ivolley.fragments.ChatFragment
@@ -29,6 +30,14 @@ class MainActivity : AppCompatActivity(), NavigationBarView.OnItemSelectedListen
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        FirebaseMessaging.getInstance().subscribeToTopic("/topics/chat").addOnCompleteListener { task ->
+            if (task.isSuccessful) {
+                Log.d("notis","siiii")
+            } else {
+                Log.d("notis", "nooooo")
+            }
+        }
 
         binding = ActivityMainBinding.inflate(layoutInflater)
 

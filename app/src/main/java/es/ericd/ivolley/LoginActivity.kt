@@ -1,9 +1,12 @@
 package es.ericd.ivolley
 
 import android.content.Intent
+import android.content.pm.PackageManager
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.commit
 import androidx.fragment.app.replace
 import androidx.lifecycle.lifecycleScope
@@ -16,13 +19,17 @@ import es.ericd.ivolley.fragments.ShowLoginFragment
 import es.ericd.ivolley.services.FirebaseService
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import android.Manifest
 
 class LoginActivity : AppCompatActivity(), ShowLoginFragment.ShowLoginInterface, LoginFragment.LoginInterface, RegisterFragment.RegisterInterface {
 
     lateinit var binding: ActivityLoginBinding
+    val NOTIFICATION_REQUEST_CODE = 1234
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        setNotification()
 
         binding = ActivityLoginBinding.inflate(layoutInflater)
 
@@ -34,6 +41,16 @@ class LoginActivity : AppCompatActivity(), ShowLoginFragment.ShowLoginInterface,
             Snackbar.make(binding.root, extras.getString("error").toString(), Snackbar.LENGTH_LONG).show()
         }
 
+    }
+
+    fun setNotification() {
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.POST_NOTIFICATIONS) != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(
+                this,
+                arrayOf(Manifest.permission.POST_NOTIFICATIONS),
+                NOTIFICATION_REQUEST_CODE
+            )
+        }
     }
 
     override fun clickLogin() {

@@ -74,6 +74,8 @@ class FirestoreService {
                 )
             ).await()
 
+            ApiService.sendNotificationToAllDevices()
+
         }
 
         suspend fun updateUser(prevUsername: String, newUser: String) {

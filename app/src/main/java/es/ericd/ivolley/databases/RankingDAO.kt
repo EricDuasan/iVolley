@@ -13,6 +13,6 @@ interface RankingDAO {
     @Insert(onConflict = OnConflictStrategy.REPLACE) suspend fun insertRanking(databaseRanking: Ranking): Long
 
     @Query("DELETE FROM ranking")
-    suspend fun deleteCar()
+    suspend fun deleteAll()
 
 }
