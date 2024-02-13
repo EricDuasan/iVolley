@@ -16,6 +16,7 @@ import es.ericd.ivolley.services.FirebaseService
 import es.ericd.ivolley.services.FirestoreService
 import es.ericd.ivolley.utils.PreferencesUtil
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
@@ -55,6 +56,15 @@ class ChatFragment : Fragment() {
             withContext(Dispatchers.Main) {
                 listOfChats.addAll(chats)
                 binding.recView.adapter?.notifyDataSetChanged()
+            }
+
+            FirestoreService.getNotesFlow().collect{
+                listOfChats.clear()
+                listOfChats.addAll(it)
+
+                withContext(Dispatchers.Main) {
+                    binding.recView.adapter?.notifyDataSetChanged()
+                }
             }
 
         }
