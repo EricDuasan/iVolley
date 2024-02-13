@@ -36,7 +36,7 @@ class ChatAdapter(val context: Context, val chatList: MutableList<Chatitem>, val
 
             val color = prefs.getString(PreferencesUtil.COLOR, "#000000")
 
-            tvMessage.setTextColor(Color.parseColor(color))
+            tvMessage.setTextColor(Color.parseColor(color ?: "#000000"))
 
         }
     }
