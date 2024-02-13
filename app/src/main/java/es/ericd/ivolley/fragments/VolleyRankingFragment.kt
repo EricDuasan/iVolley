@@ -53,7 +53,7 @@ class VolleyRankingFragment : Fragment() {
 
         binding.recView.adapter = VolleyballRankingAdapter(requireContext(), volleyRankingList, showMatches)
         // binding.recView.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
-        binding.recView.layoutManager = GridLayoutManager(requireContext(), 3)
+        binding.recView.layoutManager = GridLayoutManager(requireContext(), 2)
 
         getRanking()
 
