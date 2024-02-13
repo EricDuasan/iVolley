@@ -15,19 +15,13 @@ class VolleyballRankingAdapter(val context: Context, val volleyballList: Mutable
 
     class VolleyballRankingViewHolder(view: View): RecyclerView.ViewHolder(view) {
         private val tvTop = view.findViewById<TextView>(R.id.tv_top)
-        private val tvTeamName = view.findViewById<TextView>(R.id.tv_team_name)
-        private val tvScore = view.findViewById<TextView>(R.id.tv_score)
         private val ivFlag = view.findViewById<ImageView>(R.id.iv_flag)
 
         fun bindItem(position: Int, volley: VolleyItem) {
             tvTop.text = "# " + (position + 1)
-            tvTeamName.text = volley.country
-            tvScore.text = "Score: ${volley.score}"
-
             Picasso.get().load(volley.flag).into(ivFlag)
 
         }
-
 
     }
 

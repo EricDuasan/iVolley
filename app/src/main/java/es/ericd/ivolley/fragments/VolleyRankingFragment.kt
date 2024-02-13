@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.withCreated
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.snackbar.Snackbar
 import es.ericd.ivolley.R
@@ -51,7 +52,8 @@ class VolleyRankingFragment : Fragment() {
         }
 
         binding.recView.adapter = VolleyballRankingAdapter(requireContext(), volleyRankingList, showMatches)
-        binding.recView.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
+        // binding.recView.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
+        binding.recView.layoutManager = GridLayoutManager(requireContext(), 3)
 
         getRanking()
 
