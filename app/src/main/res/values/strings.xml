@@ -18,12 +18,27 @@
     </string>
     <string name="attachment_summary_off">Only download attachments when manually requested</string>
     <string name="lorem_ipsum">
-         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam blandit quam eget imperdiet volutpat. Proin pulvinar lobortis nibh, eget ultrices velit molestie a. Aenean placerat tristique consequat. Cras sit amet sollicitudin dui. Etiam blandit ipsum et elementum blandit. Aenean eu interdum nisl, commodo tristique arcu. Morbi et massa fringilla, auctor sem gravida, vestibulum nisl. Praesent lacinia et arcu ac tempus.
+         Es un deporte que se juega con una pelota y en el que dos equipos, integrados por seis jugadores cada uno, se enfrentan sobre una área de juego separada por una red central. El objetivo del juego es pasar el balón por encima de la red, logrando que llegue al suelo del campo contrario mientras el equipo adversario intenta impedir simultáneamente que lo consiga, forzándolo a errar en su intento. Surge una fase de ataque en un equipo cuando intenta que el balón toque el suelo del campo contrario mientras que en el otro equipo surge una fase de defensa intentando impedirlo.
+    </string>
 
-Fusce pharetra odio condimentum diam ornare, in vestibulum tortor ultrices. Vivamus rhoncus leo est, in aliquet nulla aliquam in. Suspendisse diam enim, rutrum eu eros at, imperdiet pretium neque. Ut ornare eros non justo ullamcorper, et luctus lacus interdum. Duis malesuada mauris felis, vel tempus nisi dignissim eget. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Etiam suscipit erat ut aliquam scelerisque. Aliquam turpis tortor, egestas sed interdum at, pellentesque tristique turpis. Sed purus neque, congue fermentum pharetra vel, dictum ut ligula. Ut ac porta justo, a vulputate odio.
-
-Vivamus faucibus tortor erat, rhoncus elementum dui porta non. Phasellus elementum aliquam risus. Sed quis est eu dolor dignissim hendrerit. Vivamus nec nunc condimentum, ultricies nibh sed, cursus diam. Aliquam vehicula nisi elit, finibus condimentum ipsum finibus ac. Maecenas porta magna nec tempor placerat. Duis finibus lacus velit. Ut sodales ligula nec urna commodo, ac viverra nisi porttitor. Etiam consectetur massa id ipsum lobortis cursus. Nullam consectetur consequat blandit. Etiam volutpat varius mauris, ac pellentesque sem ullamcorper id. Vivamus at massa orci. Praesent porta nibh sed tortor tincidunt, id interdum augue malesuada.
-
-Sed quis tristique tellus. Nullam faucibus fermentum lacus, id tempor magna gravida sit amet. Praesent dapibus leo sed elit convallis auctor. In ac pretium eros. Praesent luctus nisi eget vehicula bibendum. Cras et ligula ut massa sagittis porta quis ut mi. Maecenas tempus dolor sed gravida pharetra. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean vitae pretium augue. Quisque sapien elit, convallis eu efficitur sed, egestas non odio. Vestibulum ac dolor euismod, tempus ante sed, vestibulum leo.
+    <string name="volleyball_rules">
+        · 6 players on a team, 3 on the front row and 3 on the back row\n
+        · There is a maximum of three hits per side\n
+        · Player may not hit the ball twice in succession (A block is not considered a hit)\n
+        · Ball may be played off the net during a volley and on a serve\n
+        · A ball hitting a boundary line is ‘in’\n
+        · A ball is ‘out’ if it hits:\n
+            - an antennae,\n
+            - the floor completely outside the court,\n
+            - any of the net or cables outside the antennae,\n
+            - the referee stand or pole,\n
+            - the ceiling of the venue\n
+        · It is legal to contact the ball with any part of a players body\n
+        · It is illegal to catch, hold, or throw the ball\n
+        · If two or more players contact the ball at the same time, it is considered one play and either player involved may make the next contact (provided the next contact isn’t the teams 4th hit)\n
+        · A player cannot block or attack a serve from on or inside the 3 meter line\n
+        · After the serve, front line players may switch positions at the net\n
+        · If a team has five players they will have a ghost position and when that position is serving the team will lose the point and serve.\n
+        · The referee/duty crew is made up of two refs, line judges and a scorekeeper.\n
     </string>
 </resources>
