@@ -28,8 +28,6 @@ class SettingsActivity : AppCompatActivity() {
                     FirestoreService.updateUser(currentUsername, newUser ?: FirebaseService.getCurrentUser()?.email.toString())
                 }
             }
-
-            Log.d("sisi", newUser.toString())
         }
     }
     override fun onCreate(savedInstanceState: Bundle?) {
